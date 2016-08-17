@@ -110,7 +110,7 @@ app.post('/users', jsonParser, function(req, res) {
                 User.find(function(err, users) {
                   console.log(users);
                 });
-                return res.status(201).json({});
+                return res.location('/users/'+user._id).status(201).json({});
             });
         });
     });

@@ -23,21 +23,22 @@ describe('User endpoints', function() {
         });
 
         describe('GET', function() {
-            it('should return an empty list of users initially', function() {
-                return chai.request(app)
-                    .get(this.pattern.stringify())
-                    .then(function(res) {
-                        res.should.have.status(200);
-                        res.type.should.equal('application/json');
-                        res.charset.should.equal('utf-8');
-                        res.body.should.be.an('array');
-                        res.body.length.should.equal(0);
-                    });
-            });
+            // it('should return an empty list of users initially', function() {
+            //     return chai.request(app)
+            //         .get(this.pattern.stringify())
+            //         .then(function(res) {
+            //             res.should.have.status(200);
+            //             res.type.should.equal('application/json');
+            //             res.charset.should.equal('utf-8');
+            //             res.body.should.be.an('array');
+            //             res.body.length.should.equal(0);
+            //         });
+            // });
 
             it('should return a list of users', function() {
                 var user = {
-                    username: 'joe'
+                    username: 'joe',
+                    password: 'pass'//replace with hash
                 };
                 return chai.request(app)
                     .post(this.pattern.stringify())
@@ -65,7 +66,8 @@ describe('User endpoints', function() {
         describe('POST', function() {
             it('should allow adding a user', function() {
                 var user = {
-                    username: 'joe'
+                    username: 'joe',
+                    password: 'pass'
                 };
                 return chai.request(app)
                     .post(this.pattern.stringify())
@@ -162,7 +164,8 @@ describe('User endpoints', function() {
 
             it('should return a single user', function() {
                 var user = {
-                    username: 'joe'
+                    username: 'joe',
+                    password: 'pass'
                 };
                 var params;
                 return chai.request(app)
@@ -193,10 +196,12 @@ describe('User endpoints', function() {
         describe('PUT', function() {
             it('should allow editing a user', function() {
                 var oldUser = {
-                    username: 'joe'
+                    username: 'joe',
+                    password: 'pass'
                 };
                 var newUser = {
-                    username: 'joe2'
+                    username: 'joe2',
+                    password: 'pass'
                 };
                 var params;
                 return chai.request(app)
@@ -336,7 +341,8 @@ describe('User endpoints', function() {
             });
             it('should delete a user', function() {
                 var user = {
-                    username: 'joe'
+                    username: 'joe',
+                    password: 'pass'
                 };
                 var params;
                 return chai.request(app)
