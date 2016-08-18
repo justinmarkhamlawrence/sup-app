@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-
+var config = require('./config')
 var User = require('./models/user');
 var Message = require('./models/message');
 
@@ -316,22 +316,39 @@ app.get('/messages/:messageId', function(req, res) {
     });
 });
 
+// var runServer = function(callback) {
+//     var databaseUri = config.DATABASE_URL;//|| global.databaseUri || 'mongodb://localhost/sup';
+//     console.log(databaseUri, "database is here");
+//     mongoose.connect(databaseUri).then(function(err) {
+//         var port = process.env.PORT || 8080;
+//         var server = app.listen(port, function() {
+//             console.log('Listening on localhost:' + port);
+//             if (callback) {
+//                 callback(server);
+//             }
+//         });
+//     });
+// };
 var runServer = function(callback) {
-    var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/sup';
-    console.log(databaseUri, "database is here");
-    mongoose.connect(databaseUri).then(function() {
-        var port = process.env.PORT || 8080;
-        var server = app.listen(port, function() {
-            console.log('Listening on localhost:' + port);
+    mongoose.connect(config.DATABASE_URL, function(err) {
+        if (err && callback) {
+            return callback(err);
+        }
+
+        app.listen(config.PORT, function() {
+            console.log('Listening on localhost:' + config.PORT);
             if (callback) {
-                callback(server);
+                callback();
             }
         });
     });
 };
-
 if (require.main === module) {
-    runServer();
+    runServer(function(err) {
+        if (err) {
+            console.error(err);
+        }
+    });
 };
 
 exports.app = app;
