@@ -8,3 +8,10 @@ addons:
     - mongodb-3.2-precise
     packages:
     - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key:
+    secure: MKxhaAVEuHod5qTECNW7L9Qt35pY6rN8aUkrzBamjq4+spCB5cHA5u7NEje3nmfRTPZ7eXZnMPpAFnbMkwOToZpyatzREXcCozdntqO74kzfTguMUEexloglJx4L3/G9S2d1Un1nE3PtW9awhAJBBykqRFgHgGg4EeTHQOmLaqP1Pad8IGzYjXiVhQKEa0grZ4I84ypeBan9KgUOry+WT4tecuGsdRyf5sZS15IA+TQcmH8tDDKLEpMwpVmNM4flIl0nN7ymiIAoETbaPUu4z1QRDC17f7KckrNg2oUg50iz2lUzH78gani0yPbNaKoWgWsN63V/qNnEHSnHEFNHC76x8ztQUZlUVAm35/5gp6rgIynGA3XkcfkHWaD/IwDNxRYtprTuMB+wN+adu+vSv2bNmbFNYvPfm+zaBH4X4tlcKo/2kZA0dUbUN7BQJvrsZQpIUusIfVCpA/vNla39aCVMZc2p2yqkQjRadB3FpWxbuJYVeLOH3eQehnj6q3eV7M7CFsXyA784l6iCZ+ot210rsuropvdxStoSgETGjeus49pm+jjmr+AJIcoQtXmDBj8A+wgdGLufZrMXMZFuDeC7F6SYPXIKovyGahCV4zgvk+KbkzebAqaOwjNmDPLrQ6Ko9Z0PaU/MXoJ4VggNcvlxsmtyEwXXjVD3n3uWRqU=
+  app: serene-sierra-53748
+  on:
+    repo: justinmarkhamlawrence/sup-app
