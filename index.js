@@ -48,7 +48,9 @@ var strategy = new BasicStrategy(function(username, password, callback) {
 passport.use(strategy);
 
 app.use(passport.initialize());
-
+app.get('/', function(req, res){
+  res.json({});
+})
 app.get('/hidden', passport.authenticate('basic', {session: false}), function(req, res) {
     res.json({
         message: 'Luke... I am your father'
@@ -316,6 +318,7 @@ app.get('/messages/:messageId', function(req, res) {
 
 var runServer = function(callback) {
     var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/sup';
+    console.log(databaseUri, "database is here");
     mongoose.connect(databaseUri).then(function() {
         var port = process.env.PORT || 8080;
         var server = app.listen(port, function() {
