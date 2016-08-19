@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "mocha --no-colors",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "keywords": [
     "messaging"
